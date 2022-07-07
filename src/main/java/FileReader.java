@@ -5,17 +5,24 @@ public class FileReader extends Thread {
 	private String threadName="FileReader";
 	private PacketBoundedBufferMonitor bufferMonitor;	
 	private String fileName;
-	
-	
+	private String dir;
+
+
 	public FileReader() {}
 	public FileReader(PacketBoundedBufferMonitor bm, String fileName) {
 		this.bufferMonitor=bm;		
 		this.fileName=fileName;
+
 	}
-	
+	public FileReader(PacketBoundedBufferMonitor bm, String fileName,String dir) {
+		this.bufferMonitor=bm;
+		this.fileName=fileName;
+		this.dir=dir;
+
+	}
 	public void run() {
 		try {
-			File file=new File(Constants.CLIENT_FILE_ROOT+fileName);
+			File file=new File(dir);
 			FileInputStream in = new FileInputStream (file);				
 			boolean flagFileHead=true;
 			int packetIndex=0;

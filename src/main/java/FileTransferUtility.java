@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class FileTransferUtility {
 
-    public static void sendfile(String fileName ) {
+    public static void sendfile(String dir,String fileName ) {
         try {
-            File file=new File(Constants.CLIENT_FILE_ROOT+fileName);
+            File file=new File(dir);
             //if (!file.exists()) return;
 
             InetAddress serverIp=InetAddress.getByName("localhost");
@@ -29,7 +29,7 @@ public class FileTransferUtility {
             PacketSender packetSender=new PacketSender(bufferMonitor,senderIp,Constants.CLIENT_UDP_PORT,serverIp,serverPort);
             packetSender.start();
 
-            FileReader fileReader=new FileReader(bufferMonitor,fileName);
+            FileReader fileReader=new FileReader(bufferMonitor,fileName,dir);
             fileReader.start();
 
             try {

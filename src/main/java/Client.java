@@ -51,7 +51,7 @@ public class Client implements Runnable{
             if(watcher.newFile != null){
                 logger.info("A new file is created : " + watcher.newFile);
                 // Send the file over UDP
-                FileTransferUtility.sendfile( watcher.newFile.toString() );
+                FileTransferUtility.sendfile(Constants.CLIENT_FILE_ROOT+ "\\" + watcher.newFile.toString(), watcher.newFile.toString() );
 
                 watcher.newFile = null;
             }
